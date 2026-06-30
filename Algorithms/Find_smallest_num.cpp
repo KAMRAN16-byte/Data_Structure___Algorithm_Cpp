@@ -3,6 +3,10 @@
 #include <ctime>
 using namespace std;
 
+int min_num(const int x , const int y) {
+    return x < y ? x : y;
+}
+
 int main()
 {
     srand(time(0));
@@ -15,7 +19,7 @@ int main()
     }
     int smallest = *arr;
     for (const int* i = arr +1; i < &arr[size]; i++) {
-        smallest = min(smallest, *i);
+        smallest = min_num(smallest, *i);
     }
 
     for (const int* i = arr; i < &arr[size]; i++) {
