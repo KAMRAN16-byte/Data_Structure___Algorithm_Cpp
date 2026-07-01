@@ -38,4 +38,5 @@ int main() {
     cin >> x;
     cout << endl;
     cout << linear_search(arr, x, size);;
+    delete [] arr;
 }
