@@ -1,0 +1,53 @@
+//
+// Created by Development on 02-07-2026.
+//
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void merge(vector<int> &arr,int start,int mid,int end) {
+    int i = start,j = mid+1;
+    vector<int> temp;
+    while (i <= mid && j <=end) {
+        if (arr[i] <= arr[j]) {
+            temp.push_back(arr[i]);
+            i++;
+        }
+        else {
+            temp.push_back(arr[j]);
+            j++;
+        }
+    }
+    while (i <= mid) {
+        temp.push_back(arr[i]);
+        i++;
+    }
+    while (j <= end) {
+        temp.push_back(arr[j]);
+        j++;
+    }
+
+    for (int k = 0; k < temp.size(); k++) {
+        arr[k+start] = temp[k];
+    }
+}
+
+void merge_sort(vector<int> &arr,int start,int end) {
+    if (start == end) {
+        return;
+    }
+    const int mid = start + (end - start)/2;
+    merge_sort(arr,start,mid);
+    merge_sort(arr,mid+1,end);
+    merge(arr,start,mid,end);
+}
+
+int main() {
+
+    vector<int> arr = {12, 31, 35, 8, 32, 17};
+    merge_sort(arr,0,arr.size()-1);
+    for (int item : arr) {
+        cout << item << " ";
+    }
+    return 0;
+}
