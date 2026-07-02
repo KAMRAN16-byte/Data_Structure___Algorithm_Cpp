@@ -1,5 +1,5 @@
 //
-// Created by Development on 02-07-2026.
+// Created by Kam_Codex Development on 02-07-2026.
 //
 
 #ifndef DATA_STRUCTURE___ALGORITHM_C___SORT_ALGORITHMS_H
@@ -68,7 +68,7 @@ public:
         cout << "|" << "array initialized" << "|" << endl;
     }
 
-    void Merge_Sort(vector<int> &arr) const {
+    static void Merge_Sort(vector<int> &arr) {
         M_Main(arr,0, arr.size() - 1);
     }
 
@@ -85,8 +85,6 @@ public:
         }
         cout << endl;
     }
-
-
 };
 
 #endif //DATA_STRUCTURE___ALGORITHM_C___SORT_ALGORITHMS_H
