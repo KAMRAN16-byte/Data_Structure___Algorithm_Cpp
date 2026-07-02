@@ -11,7 +11,7 @@ class Sort_algorithms
 {
     // Default Private
     vector<int> array;int size{};
-    static void M_Merge(vector<int> &arr,const int start, const int mid, const int end) {
+    static void Merge_Sort_Helper_Merge(vector<int> &arr,const int start, const int mid, const int end) {
         int i = start, j = mid + 1;
         vector<int> temp;
         while (i <= mid && j <= end) {
@@ -37,17 +37,17 @@ class Sort_algorithms
         }
     }
 
-    static void M_Main(vector<int> &arr, const int start, const int end) {
+    static void Merge_Sort_Helper_Recursive(vector<int> &arr, const int start, const int end) {
         if (start == end) {
             return;
         }
         const int mid = start + (end - start) / 2;
-        M_Main(arr, start, mid);
-        M_Main(arr, mid+1, end);
-        M_Merge(arr,start, mid, end);
+        Merge_Sort_Helper_Recursive(arr, start, mid);
+        Merge_Sort_Helper_Recursive(arr, mid+1, end);
+        Merge_Sort_Helper_Merge(arr,start, mid, end);
     }
 
-    static int partition(vector<int> &arr, const int start, const int end) {
+    static int Quick_Sort_Helper_Partition(vector<int> &arr, const int start, const int end) {
         const int pivot = arr[start];
         int i = start;
         for (int j = i + 1; j <= end;j++) {
@@ -58,6 +58,15 @@ class Sort_algorithms
         }
         swap(arr[start], arr[i]);
         return i;
+    }
+
+    static void Quick_Sort_Helper(vector<int> &arr, const int start, const int end) {
+        if (start >= end) {
+            return;
+        }
+        const int pivot_idx = Quick_Sort_Helper_Partition(arr, start, end);
+        Quick_Sort_Helper(arr,start,pivot_idx-1);
+        Quick_Sort_Helper(arr,pivot_idx+1, end);
     }
 
 public:
@@ -80,12 +89,18 @@ public:
         cout << "|" << "array initialized" << "|" << endl;
     }
 
+    static void Quick_Sort(vector<int> &arr) {
+        Quick_Sort_Helper(arr,0,arr.size()-1);
+    }
     static void Merge_Sort(vector<int> &arr) {
-        M_Main(arr,0, arr.size() - 1);
+        Merge_Sort_Helper_Recursive(arr,0, arr.size() - 1);
     }
 
+    void Quick_Sort() {
+        Quick_Sort_Helper(array,0,array.size()-1);
+    }
     void Merge_Sort() {
-        M_Main(array, 0, array.size() - 1);
+        Merge_Sort_Helper_Recursive(array, 0, array.size() - 1);
     }
 
     void display_array() const {
