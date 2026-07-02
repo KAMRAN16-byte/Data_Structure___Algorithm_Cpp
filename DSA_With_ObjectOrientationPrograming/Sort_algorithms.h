@@ -11,8 +11,8 @@ class Sort_algorithms
 {
     // Default Private
     vector<int> array;int size{};
-    static void Merge_Sort_Helper_Merge(vector<int> &arr,const int start, const int mid, const int end) {
-        int i = start, j = mid + 1;
+    static void Merge_Sort_Helper_Merge(vector<int> &arr,const size_t start, const size_t mid, const size_t end) {
+        size_t i = start, j = mid + 1;
         vector<int> temp;
         while (i <= mid && j <= end) {
             if (arr[i] <= arr[j]) {
@@ -37,20 +37,20 @@ class Sort_algorithms
         }
     }
 
-    static void Merge_Sort_Helper_Recursive(vector<int> &arr, const int start, const int end) {
+    static void Merge_Sort_Helper_Recursive(vector<int> &arr, const size_t start, const size_t end) {
         if (start == end) {
             return;
         }
-        const int mid = start + (end - start) / 2;
+        const size_t mid = start + (end - start) / 2;
         Merge_Sort_Helper_Recursive(arr, start, mid);
         Merge_Sort_Helper_Recursive(arr, mid+1, end);
         Merge_Sort_Helper_Merge(arr,start, mid, end);
     }
 
-    static int Quick_Sort_Helper_Partition(vector<int> &arr, const int start, const int end) {
+    static size_t Quick_Sort_Helper_Partition(vector<int> &arr, const size_t start, const size_t end) {
         const int pivot = arr[start];
-        int i = start;
-        for (int j = i + 1; j <= end;j++) {
+        size_t i = start;
+        for (size_t j = i + 1; j <= end;j++) {
             if (arr[j] <= pivot) {
                 i++;
                 swap(arr[j], arr[i]);
@@ -60,11 +60,11 @@ class Sort_algorithms
         return i;
     }
 
-    static void Quick_Sort_Helper(vector<int> &arr, const int start, const int end) {
+    static void Quick_Sort_Helper(vector<int> &arr, const size_t start, const size_t end) {
         if (start >= end) {
             return;
         }
-        const int pivot_idx = Quick_Sort_Helper_Partition(arr, start, end);
+        const size_t pivot_idx = Quick_Sort_Helper_Partition(arr, start, end);
         Quick_Sort_Helper(arr,start,pivot_idx-1);
         Quick_Sort_Helper(arr,pivot_idx+1, end);
     }
