@@ -2,8 +2,8 @@
 // Created by Kam_Codex Development on 02-07-2026.
 //
 
-#ifndef DATA_STRUCTURE___ALGORITHM_C___SORT_ALGORITHMS_H
-#define DATA_STRUCTURE___ALGORITHM_C___SORT_ALGORITHMS_H
+#ifndef DATA_STRUCTURE_ALGORITHM_CPP_SORT_ALGORITHMS_H
+#define DATA_STRUCTURE_ALGORITHM_CPP_SORT_ALGORITHMS_H
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -123,4 +123,4 @@ public:
     }
 };
 
-#endif //DATA_STRUCTURE___ALGORITHM_C___SORT_ALGORITHMS_H
+#endif //DATA_STRUCTURE_ALGORITHM_CPP_SORT_ALGORITHMS_H
