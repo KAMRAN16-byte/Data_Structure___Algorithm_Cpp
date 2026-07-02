@@ -47,6 +47,19 @@ class Sort_algorithms
         M_Merge(arr,start, mid, end);
     }
 
+    static int partition(vector<int> &arr, const int start, const int end) {
+        const int pivot = arr[start];
+        int i = start;
+        for (int j = i + 1; j <= end;j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                swap(arr[j], arr[i]);
+            }
+        }
+        swap(arr[start], arr[i]);
+        return i;
+    }
+
 public:
     void initialize_array() {
         array.clear();
@@ -80,6 +93,15 @@ public:
             return;
         }
         for (const int val : array) {
+            cout << val << " ";
+        }
+        cout << endl;
+    }
+    static void display_array(const vector<int>& arr) {
+        if (arr.empty()) {
+            return;
+        }
+        for (const int val : arr) {
             cout << val << " ";
         }
         cout << endl;
