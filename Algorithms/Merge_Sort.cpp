@@ -3,6 +3,8 @@
 //
 #include <iostream>
 #include <vector>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 
 void merge(vector<int> &arr,int start,int mid,int end) {
@@ -53,9 +55,19 @@ void merge_sort(vector<int> &arr,int start,int end) {
 }
 
 int main() {
-
-    vector<int> arr = {126, 31, 35, 8, 32, 17};
+    srand(time(nullptr));
+    vector<int> arr;
+    int size = rand() % 20 + 1;
+    for (int i = 0; i < size; i++) {
+        arr.push_back(rand() % 30 + 1);
+    }
+    cout << "Unsorted: ";
+    for (int item : arr) {
+        cout << item << " ";
+    }
+    cout << endl;
     merge_sort(arr,0,arr.size()-1);
+    cout << "Sorted: ";
     for (int item : arr) {
         cout << item << " ";
     }
