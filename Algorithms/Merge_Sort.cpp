@@ -38,13 +38,23 @@ void merge_sort(vector<int> &arr,int start,int end) {
     }
     const int mid = start + (end - start)/2;
     merge_sort(arr,start,mid);
+    if (start == 0 && end == arr.size() - 1) {
+        cout << "First half sorted:  ";
+        for (int item : arr) cout << item << " ";
+        cout << endl;
+    }
     merge_sort(arr,mid+1,end);
+    if (start == 0 && end == arr.size() - 1) {
+        cout << "Second half sorted: ";
+        for (int item : arr) cout << item << " ";
+        cout << endl;
+    }
     merge(arr,start,mid,end);
 }
 
 int main() {
 
-    vector<int> arr = {12, 31, 35, 8, 32, 17};
+    vector<int> arr = {126, 31, 35, 8, 32, 17};
     merge_sort(arr,0,arr.size()-1);
     for (int item : arr) {
         cout << item << " ";
