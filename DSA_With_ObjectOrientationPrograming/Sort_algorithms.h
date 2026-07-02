@@ -7,7 +7,6 @@
 #include <vector>
 #include <iostream>
 using namespace std;
-
 class Sort_algorithms
 {
     // Default Private
