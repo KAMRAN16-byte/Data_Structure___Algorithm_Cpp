@@ -109,8 +109,19 @@ class Sort_algorithms {
         cout << '\n';
     }
 
-    static void to_file(const vector<int> &arr,const string &filename = "sample.txt") {
+    static void to_file(const vector<int> &arr,const string &filename) {
         ofstream file(filename);
+        int j{},i{},k{};
+        cout << "Writing Data to file!" << endl;
+        for (j = 0; j < arr.size(); j++) {
+            for (k = i; k < i+100 && k < arr.size() ; k++) {
+                file << arr[k] << "\t";
+            }
+            file << "\n";
+            i = k;
+        }
+        file.close();
+        cout << "Data written successfully." << endl;
     }
 public:
     void initialize_array() {
@@ -160,8 +171,15 @@ public:
         if (arr.empty())
             return;
         print(arr);
-
     }
+
+    static void write_file(const vector<int> &arr,const string &filename = "sample.tsv") {
+        to_file(arr, filename);
+    }
+    void write_file(const string &filename = "sample.tsv") const {
+        to_file(array, filename);
+    }
+
 };
 
 #endif //DATA_STRUCTURE_ALGORITHM_CPP_SORT_ALGORITHMS_H
