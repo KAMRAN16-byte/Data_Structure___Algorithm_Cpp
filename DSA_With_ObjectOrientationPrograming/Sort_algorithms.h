@@ -8,6 +8,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <fstream>
 using namespace std;
 
 class Sort_algorithms {
@@ -82,6 +83,35 @@ class Sort_algorithms {
         Quick_Sort_Helper(arr, pivot_idx + 1, end);
     }
 
+    static void print(const vector<int> &arr) {
+        constexpr int CELL_WIDTH = 5;
+        if (arr.size() > 15) {
+            for (const int i : arr) {
+                cout << i << " ";
+            }
+            cout << endl;
+
+            return;
+        }
+        cout << "+";
+        for (int i = 0; i < arr.size(); i++)
+            cout << string(CELL_WIDTH, '-') << "+";
+        cout << '\n';
+
+        cout << "|";
+        for (const int x : arr)
+            cout << center(to_string(x), CELL_WIDTH) << "|";
+        cout << '\n';
+
+        cout << "+";
+        for (int i = 0; i < arr.size(); i++)
+            cout << string(CELL_WIDTH, '-') << "+";
+        cout << '\n';
+    }
+
+    static void to_file(const vector<int> &arr,const string &filename = "sample.txt") {
+        ofstream file(filename);
+    }
 public:
     void initialize_array() {
         array.clear();
@@ -120,35 +150,17 @@ public:
     }
 
     void display_array() const {
-        if (array.empty()) {
+        if (array.empty())
             return;
-        }
-        for (const int val: array) {
-            cout << val << " ";
-        }
-        cout << endl;
+        print(this->array);
     }
+
 
     static void display_array(const vector<int>& arr) {
         if (arr.empty())
             return;
+        print(arr);
 
-        constexpr int CELL_WIDTH = 5;
-
-        cout << "+";
-        for (int i = 0; i < arr.size(); i++)
-            cout << string(CELL_WIDTH, '-') << "+";
-        cout << '\n';
-
-        cout << "|";
-        for (const int x : arr)
-            cout << center(to_string(x), CELL_WIDTH) << "|";
-        cout << '\n';
-
-        cout << "+";
-        for (int i = 0; i < arr.size(); i++)
-            cout << string(CELL_WIDTH, '-') << "+";
-        cout << '\n';
     }
 };
 
