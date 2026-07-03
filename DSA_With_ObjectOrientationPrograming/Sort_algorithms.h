@@ -16,6 +16,10 @@ class Sort_algorithms {
     vector<int> array;
     int size{};
 
+    /*
+     * center() print decorative array string in console.
+     * Note: work better if size < 15 ot monitor width is high.
+     */
     static string center(const string& text, int width) {
         if (text.length() >= width)
             return text;
@@ -26,6 +30,10 @@ class Sort_algorithms {
         return string(left, ' ') + text + string(right, ' ');
     }
 
+    /*
+     * Merge_Sort_Helper_Merge() is a helper fx for merge sort.
+     * it merge arrays.
+     */
     static void Merge_Sort_Helper_Merge(vector<int> &arr, const int start, const int mid, const int end) {
         int i = start, j = mid + 1;
         vector<int> temp;
@@ -51,6 +59,11 @@ class Sort_algorithms {
         }
     }
 
+
+    /*
+     * Merge_Sort_Helper_Merge() is a helper fx for merge sort.
+     * Repeat call for fx
+     */
     static void Merge_Sort_Helper_Recursive(vector<int> &arr, const int start, const int end) {
         if (start == end) {
             return;
@@ -61,6 +74,10 @@ class Sort_algorithms {
         Merge_Sort_Helper_Merge(arr, start, mid, end);
     }
 
+    /*
+     * Quick_Sort_Helper_Partition() Helper fx for Quick sort.
+     * Quick Sort pivot base partition fx.
+     */
     static int Quick_Sort_Helper_Partition(vector<int> &arr, const int start, const int end) {
         const int pivot = arr[start];
         int i = start;
@@ -73,6 +90,7 @@ class Sort_algorithms {
         swap(arr[start], arr[i]);
         return i;
     }
+
 
     static void Quick_Sort_Helper(vector<int> &arr, const int start, const int end) {
         if (start >= end) {
@@ -114,14 +132,14 @@ class Sort_algorithms {
         int j{},i{},k{};
         cout << "Writing Data to file!" << endl;
         for (j = 0; j < arr.size(); j++) {
-            for (k = i; k < i+100 && k < arr.size() ; k++) {
+            for (k = i; k < i+30 && k < arr.size() ; k++) {
                 file << arr[k] << "\t";
             }
             file << "\n";
             i = k;
         }
         file.close();
-        cout << "Data written successfully." << endl;
+        cout << k << " Records Data written successfully." << endl;
     }
 public:
     void initialize_array() {

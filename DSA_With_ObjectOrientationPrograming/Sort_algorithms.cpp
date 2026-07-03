@@ -12,17 +12,17 @@ int main() {
     vector<int> a;
     srand(time(nullptr));
     // int size = rand() % 15 + 1;
-    int size = 999;
+    int size = 9999999;
     for (int i = 0; i < size; i++) {
         a.push_back(rand() % 5000 + 1);
     }
-    Sort_algorithms::write_file(a,"unsorted.txt");
+    Sort_algorithms::write_file(a,"unsorted.tsv");
     const auto start = high_resolution_clock::now();
     Sort_algorithms::Merge_Sort(a);
     const auto end = high_resolution_clock::now();
-    Sort_algorithms::write_file(a,"sorted.txt");
-    const auto duration = duration_cast<milliseconds>(end - start);
-    cout << "Execution Time: " << duration.count() << " ms" << endl;
+    Sort_algorithms::write_file(a,"sorted.tsv");
+    const auto duration = duration_cast<seconds>(end - start);
+    cout << "Execution Time: " << duration.count() << " s" << endl;
 
     return 0;
 }
