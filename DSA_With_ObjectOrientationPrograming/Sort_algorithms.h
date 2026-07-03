@@ -6,20 +6,33 @@
 #define DATA_STRUCTURE_ALGORITHM_CPP_SORT_ALGORITHMS_H
 #include <vector>
 #include <iostream>
+#include <iomanip>
+#include <string>
 using namespace std;
-class Sort_algorithms
-{
+
+class Sort_algorithms {
     // Default Private
-    vector<int> array;int size{};
-    static void Merge_Sort_Helper_Merge(vector<int> &arr,const size_t start, const size_t mid, const size_t end) {
-        size_t i = start, j = mid + 1;
+    vector<int> array;
+    int size{};
+
+    static string center(const string& text, int width) {
+        if (text.length() >= width)
+            return text;
+
+        int left = (width - text.length()) / 2;
+        int right = width - text.length() - left;
+
+        return string(left, ' ') + text + string(right, ' ');
+    }
+
+    static void Merge_Sort_Helper_Merge(vector<int> &arr, const int start, const int mid, const int end) {
+        int i = start, j = mid + 1;
         vector<int> temp;
         while (i <= mid && j <= end) {
             if (arr[i] <= arr[j]) {
                 temp.push_back(arr[i]);
                 i++;
-            }
-            else {
+            } else {
                 temp.push_back(arr[j]);
                 j++;
             }
@@ -33,24 +46,24 @@ class Sort_algorithms
             j++;
         }
         for (i = 0; i <= temp.size() - 1; i++) {
-            arr[start+i] = temp[i];
+            arr[start + i] = temp[i];
         }
     }
 
-    static void Merge_Sort_Helper_Recursive(vector<int> &arr, const size_t start, const size_t end) {
+    static void Merge_Sort_Helper_Recursive(vector<int> &arr, const int start, const int end) {
         if (start == end) {
             return;
         }
-        const size_t mid = start + (end - start) / 2;
+        const int mid = start + (end - start) / 2;
         Merge_Sort_Helper_Recursive(arr, start, mid);
-        Merge_Sort_Helper_Recursive(arr, mid+1, end);
-        Merge_Sort_Helper_Merge(arr,start, mid, end);
+        Merge_Sort_Helper_Recursive(arr, mid + 1, end);
+        Merge_Sort_Helper_Merge(arr, start, mid, end);
     }
 
-    static size_t Quick_Sort_Helper_Partition(vector<int> &arr, const size_t start, const size_t end) {
+    static int Quick_Sort_Helper_Partition(vector<int> &arr, const int start, const int end) {
         const int pivot = arr[start];
-        size_t i = start;
-        for (size_t j = i + 1; j <= end;j++) {
+        int i = start;
+        for (int j = i + 1; j <= end; j++) {
             if (arr[j] <= pivot) {
                 i++;
                 swap(arr[j], arr[i]);
@@ -60,13 +73,13 @@ class Sort_algorithms
         return i;
     }
 
-    static void Quick_Sort_Helper(vector<int> &arr, const size_t start, const size_t end) {
+    static void Quick_Sort_Helper(vector<int> &arr, const int start, const int end) {
         if (start >= end) {
             return;
         }
-        const size_t pivot_idx = Quick_Sort_Helper_Partition(arr, start, end);
-        Quick_Sort_Helper(arr,start,pivot_idx-1);
-        Quick_Sort_Helper(arr,pivot_idx+1, end);
+        const int pivot_idx = Quick_Sort_Helper_Partition(arr, start, end);
+        Quick_Sort_Helper(arr, start, pivot_idx - 1);
+        Quick_Sort_Helper(arr, pivot_idx + 1, end);
     }
 
 public:
@@ -81,24 +94,27 @@ public:
         }
         cout << "|" << "array initialized" << "|" << endl;
     }
+
     void initialize_array(const vector<int> &arr) {
         array.clear();
-        for (int i : arr) {
+        for (int i: arr) {
             this->array.push_back(i);
         }
         cout << "|" << "array initialized" << "|" << endl;
     }
 
     static void Quick_Sort(vector<int> &arr) {
-        Quick_Sort_Helper(arr,0,arr.size()-1);
+        Quick_Sort_Helper(arr, 0, arr.size() - 1);
     }
+
     static void Merge_Sort(vector<int> &arr) {
-        Merge_Sort_Helper_Recursive(arr,0, arr.size() - 1);
+        Merge_Sort_Helper_Recursive(arr, 0, arr.size() - 1);
     }
 
     void Quick_Sort() {
-        Quick_Sort_Helper(array,0,array.size()-1);
+        Quick_Sort_Helper(array, 0, array.size() - 1);
     }
+
     void Merge_Sort() {
         Merge_Sort_Helper_Recursive(array, 0, array.size() - 1);
     }
@@ -107,19 +123,32 @@ public:
         if (array.empty()) {
             return;
         }
-        for (const int val : array) {
+        for (const int val: array) {
             cout << val << " ";
         }
         cout << endl;
     }
+
     static void display_array(const vector<int>& arr) {
-        if (arr.empty()) {
+        if (arr.empty())
             return;
-        }
-        for (const int val : arr) {
-            cout << val << " ";
-        }
-        cout << endl;
+
+        constexpr int CELL_WIDTH = 5;
+
+        cout << "+";
+        for (int i = 0; i < arr.size(); i++)
+            cout << string(CELL_WIDTH, '-') << "+";
+        cout << '\n';
+
+        cout << "|";
+        for (const int x : arr)
+            cout << center(to_string(x), CELL_WIDTH) << "|";
+        cout << '\n';
+
+        cout << "+";
+        for (int i = 0; i < arr.size(); i++)
+            cout << string(CELL_WIDTH, '-') << "+";
+        cout << '\n';
     }
 };
 
