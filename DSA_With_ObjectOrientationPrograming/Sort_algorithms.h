@@ -39,20 +39,16 @@ class Sort_algorithms {
         vector<int> temp;
         while (i <= mid && j <= end) {
             if (arr[i] <= arr[j]) {
-                temp.push_back(arr[i]);
-                i++;
+                temp.push_back(arr[i++]);
             } else {
-                temp.push_back(arr[j]);
-                j++;
+                temp.push_back(arr[j++]);
             }
         }
         while (i <= mid) {
-            temp.push_back(arr[i]);
-            i++;
+            temp.push_back(arr[i++]);
         }
         while (j <= end) {
-            temp.push_back(arr[j]);
-            j++;
+            temp.push_back(arr[j++]);
         }
         for (i = 0; i <= temp.size() - 1; i++) {
             arr[start + i] = temp[i];
@@ -101,6 +97,18 @@ class Sort_algorithms {
         Quick_Sort_Helper(arr, pivot_idx + 1, end);
     }
 
+    static void Insertion_Sort_Helper(vector<int> &arr) {
+        for (int i = 1; i < arr.size(); i++) {
+            const int current = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] >= current) {
+                arr[j+1] = arr[j];
+                j--;
+            }
+            arr[j+1] = current;
+        }
+    }
+
     static void print(const vector<int> &arr) {
         constexpr int CELL_WIDTH = 5;
         if (arr.size() > 15) {
@@ -132,7 +140,7 @@ class Sort_algorithms {
         int j{},i{},k{};
         cout << "Writing Data to file!" << endl;
         for (j = 0; j < arr.size(); j++) {
-            for (k = i; k < i+30 && k < arr.size() ; k++) {
+            for (k = i; k < i+20 && k < arr.size() ; k++) {
                 file << arr[k] << "\t";
             }
             file << "\n";
@@ -140,6 +148,13 @@ class Sort_algorithms {
         }
         file.close();
         cout << k << " Records Data written successfully." << endl;
+    }
+
+    static void bubble_sort(vector<int> &arr) {
+        for (int i = 0; i < arr.size() - 1; i++)
+            for (int j = 0 ; j < arr.size() - 1 - i; j++)
+                if (arr[j] > arr[j+1])
+                    swap(arr[j], arr[j+1]);
     }
 public:
     void initialize_array() {
@@ -178,6 +193,11 @@ public:
         Merge_Sort_Helper_Recursive(array, 0, array.size() - 1);
     }
 
+
+    static void Insertion_Sort(vector<int> &arr) {
+        Insertion_Sort_Helper(arr);
+    }
+
     void display_array() const {
         if (array.empty())
             return;
@@ -196,6 +216,10 @@ public:
     }
     void write_file(const string &filename = "sample.tsv") const {
         to_file(array, filename);
+    }
+
+    static void Bubble_sort(vector<int> &arr) {
+        bubble_sort(arr);
     }
 
 };
