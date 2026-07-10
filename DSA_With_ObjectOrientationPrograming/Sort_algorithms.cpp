@@ -8,7 +8,7 @@
 using namespace std;
 using namespace std::chrono;
 int main() {
-    vector <int> arr = {23,43,2,64,1,3,76,54};
+    vector <int> arr = {23,43,2,64,1,3,76};
     Sort_algorithms::Insertion_Sort(arr);
     Sort_algorithms::display_array(arr);
     return 0;
