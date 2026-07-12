@@ -16,9 +16,15 @@ void reverse_array(int* arr, const int size) {
     }
 }
 
+void reverse_array_optimized(int* arr, const int size) {
+    for (int i = 0; i < size/2; i++) {
+        swap(arr[i],arr[size-1-i]);
+    }
+}
+
 int main() {
     int array[] = {2,5,7,3,7,94,7};
-    reverse_array(array,size(array));
+    reverse_array_optimized(array,size(array));
     for (const int val : array) {
        cout << val << " ";
     }
